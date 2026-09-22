@@ -50,6 +50,15 @@ SLinkedList<T>::~SLinkedList() {
 template <typename T>
 SLinkedList<T>::SLinkedList(const SLinkedList& other) : head_(nullptr), size_(0) {
 //TODO: Implement the copy constructor for the SLinkedList class
+    size_ = other.size();
+    //head_ = other.head_;
+    /*SNode<T>* temp = new SNode<T>;
+    temp = other.head_;
+    while(temp->next != nullptr) {
+        temp = temp->next;
+        head_->next
+    }*/
+
 }
 
 template <typename T>
@@ -61,12 +70,33 @@ SLinkedList<T>& SLinkedList<T>::operator=(const SLinkedList& other) {
 template <typename T>
 void SLinkedList<T>::push_front(const T& value) {
 // TODO: Implement the push_front function for the SLinkedList class
+    SNode<T>* newFront = new SNode<T>(value);
+    if(head_ == nullptr) {
+        head_->value = value;
+    }
+    else {
+        newFront->next = head_;
+        head_ = newFront;
+    }
 }
 
 template <typename T>
 void SLinkedList<T>::push_back(const T& value) {
 // TODO: Implement the push_back function for the SLinkedList class
+    SNode<T>* newBack = new SNode<T>(value);
 
+    if(head_ == nullptr) {
+        head_->value;
+    }
+    else {
+        SNode<T>* temp = head_;
+        
+        while(temp->next != nullptr) {
+            temp = temp->next;
+        }
+
+        temp->next = newBack;
+    }
 }
 
 template <typename T>
@@ -83,7 +113,7 @@ bool SLinkedList<T>::pop_back() {
 template <typename T>
 T& SLinkedList<T>::front() {
 // TODO: Implement the front function for the SLinkedList class
-    
+    //return head_->value;
 }
 
 template <typename T>
@@ -97,13 +127,14 @@ const T& SLinkedList<T>::front() const {
 template <typename T>
 std::size_t SLinkedList<T>::size() const noexcept {
 // TODO: Implement the size function for the SLinkedList class
-    
+    return size_;
 }
 
 template <typename T>
 bool SLinkedList<T>::empty() const noexcept {
 // TODO: Implement the empty function for the SLinkedList class
-    
+    if(head_->next == nullptr) { return true; }
+    return false;
 }
 
 template <typename T>

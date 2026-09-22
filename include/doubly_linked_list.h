@@ -62,7 +62,7 @@ DLinkedList<T>::~DLinkedList() {
 //TODO: Implement the copy constructor for the DLinkedList class.
 template <typename T>
 DLinkedList<T>::DLinkedList(const DLinkedList& other) : size_(0) {
-
+    size_ = other.size();
 }
 
 // TODO: Implement the assignment operator for the DLinkedList class.
@@ -120,7 +120,7 @@ const T& DLinkedList<T>::back() const {
 template <typename T>
 std::size_t DLinkedList<T>::size() const noexcept {
 //TODO: Implement the size function for the DLinkedList class
-
+    return size_;
 }
 
 template <typename T>
