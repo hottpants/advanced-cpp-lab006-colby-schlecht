@@ -126,7 +126,8 @@ std::size_t DLinkedList<T>::size() const noexcept {
 template <typename T>
 bool DLinkedList<T>::empty() const noexcept {
 //TODO: Implement the empty function for the DLinkedList class
-
+    if(header_ == nullptr) { return true; }
+    return false;
 }
 
 template <typename T>

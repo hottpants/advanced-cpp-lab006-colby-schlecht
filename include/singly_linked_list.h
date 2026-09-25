@@ -201,29 +201,7 @@ bool SLinkedList<T>::contains(const T& value) const {
         tempNode = tempNode->next;
         counter++;
     }
-    //delete[] tempNode;
     return false;
-
-
-    /*if(!empty())
-    {
-        while(tempNode != nullptr) {
-            std::cout << "TEMPNEXT: " << (tempNode != nullptr) << std::endl;
-            std::cout << "TEMPVALUE: " << (tempNode->value != value) << std::endl;
-            std::cout << "TEMP: " << tempNode->value << std::endl;
-            std::cout << "VALUE: " << value << std::endl;
-            if(tempNode->value == value) {
-                
-                return true;
-            }
-            tempNode = tempNode->next;
-        }
-        std::cout << "TEMPNEXT: " << (tempNode->next != nullptr) << std::endl;
-        std::cout << "TEMPVALUE: " << (tempNode->value != value) << std::endl;
-        return false;
-    }
-    return false;*/
-
 }
 // 20 -> 10 -> 30 -> nullptr
 
