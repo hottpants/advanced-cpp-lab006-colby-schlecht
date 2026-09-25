@@ -52,21 +52,27 @@ SLinkedList<T>::~SLinkedList() {
 template <typename T>
 SLinkedList<T>::SLinkedList(const SLinkedList& other) : head_(nullptr), size_(0) {
 //TODO: Implement the copy constructor for the SLinkedList class
-    size_ = other.size();
-    //head_ = other.head_;
-    /*SNode<T>* temp = new SNode<T>;
-    temp = other.head_;
-    while(temp->next != nullptr) {
-        temp = temp->next;
-        head_->next
-    }*/
+    SNode<T>* newNode = new SNode<T>(other.head_->value);
+    SNode<T>* tempNode1;
+    SNode<T>* tempNode2;
+    tempNode1 = other.head_;
+    tempNode2 = newNode;
+    if(!other.empty()) {
+        while(tempNode1->next != nullptr) {
+            tempNode2->next = tempNode1->next;
+            tempNode1 = tempNode1->next;
+            tempNode2 = tempNode2->next;
+        }
+        head_ = newNode;
+    }
+    
 
 }
 
 template <typename T>
 SLinkedList<T>& SLinkedList<T>::operator=(const SLinkedList& other) {
 //TODO: Implement the assignment operator for the SLinkedList class
-
+    head_ = other.head_;
 }
 
 template <typename T>
@@ -84,28 +90,62 @@ void SLinkedList<T>::push_back(const T& value) {
 // TODO: Implement the push_back function for the SLinkedList class
     SNode<T>* newNode = new SNode<T>(value);
     SNode<T>* tempNode;
+    newNode->value = value;
     tempNode = head_;
-    while(tempNode->next != nullptr) {
-        tempNode = tempNode->next;
-        
+    if(tempNode != nullptr) {
+        while(tempNode->next != nullptr) {
+            std::cout << "VALUE: " << tempNode->value << std::endl;
+            tempNode = tempNode->next;
+        }
+        tempNode->next = newNode;
     }
-    tempNode->next = newNode;
+    else {
+        head_ = newNode;
+        //tempNode = newNode;
+    }
+
 }
 
 template <typename T>
 bool SLinkedList<T>::pop_front() {
 // TODO: Implement the pop_front function for the SLinkedList class
+    if(empty()) { return false;}
+    else {
+        SNode<T>* tempNode;
+        tempNode = head_;
+        head_ = head_->next;
+        delete tempNode;
+        return true;
+    }
 }
 
 template <typename T>
 bool SLinkedList<T>::pop_back() {
 // TODO: Implement the pop_back function for the SLinkedList class
+    if(empty()) { return false;}
+    else {    
+        SNode<T>* tempNode;
+        SNode<T>* remNode;
 
+        tempNode = head_;
+        while(tempNode->next->next != nullptr) {
+            tempNode = tempNode->next;
+        }
+        remNode = tempNode->next;
+        delete remNode;
+        tempNode->next = nullptr;
+        return true;
+        
+    }
+    
 }
 
 template <typename T>
 T& SLinkedList<T>::front() {
 // TODO: Implement the front function for the SLinkedList class
+    if (empty()) {
+        throw std::out_of_range("SLinkedList is empty");
+    }
     return head_->value;
 }
 
@@ -132,7 +172,6 @@ std::size_t SLinkedList<T>::size() const noexcept {
             tempNode = tempNode->next;
         }
     }
-    delete[] tempNode;
     return counter;
 }
 
@@ -151,18 +190,18 @@ bool SLinkedList<T>::contains(const T& value) const {
     int counter = 0;
     while(counter < 25) {
         if(tempNode == nullptr) {
-            delete[] tempNode;
+            //delete[] tempNode;
             return false;
         }
-        //if(tempNode->value == value) {
-           // delete[] tempNode;
-            //return true;
-        //}
+        if(tempNode->value == value) {
+            //delete[] tempNode;
+            return true;
+        }
         std::cout << "TEMPVALUE: " << value << ", " << tempNode->value << std::endl;
         tempNode = tempNode->next;
         counter++;
     }
-    delete[] tempNode;
+    //delete[] tempNode;
     return false;
 
 

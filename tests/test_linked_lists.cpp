@@ -20,16 +20,16 @@ TEST_CASE("Singly linked list starts empty and supports front insertion") {
     REQUIRE(list.size() == 3u);
     REQUIRE(list.front() == 20);
     REQUIRE(list.contains(10));
-    //REQUIRE(list.contains(30));
+    REQUIRE(list.contains(30));
 
-    /*auto values = list.to_vector();
+    auto values = list.to_vector();
     REQUIRE(values.size() == 3u);
     REQUIRE(values[0] == 20);
     REQUIRE(values[1] == 10);
-    REQUIRE(values[2] == 30);*/
+    REQUIRE(values[2] == 30);
 }
 
-/*TEST_CASE("Singly linked list pop operations remove correctly") {
+TEST_CASE("Singly linked list pop operations remove correctly") {
     SLinkedList<int> list;
     list.push_back(1);
     list.push_back(2);
@@ -49,9 +49,9 @@ TEST_CASE("Singly linked list throws on front when empty") {
     SLinkedList<std::string> list;
     REQUIRE_THROWS_AS(list.front(), std::out_of_range);
 }
-*/
+
 TEST_CASE("Singly linked list copy constructor and assignment work") {
-    /*SLinkedList<int> original;
+    SLinkedList<int> original;
     original.push_back(5);
     original.push_back(8);
     original.push_back(9);
@@ -62,7 +62,7 @@ TEST_CASE("Singly linked list copy constructor and assignment work") {
 
     SLinkedList<int> assigned;
     assigned = original;
-    REQUIRE(assigned.to_vector() == original.to_vector());*/
+    REQUIRE(assigned.to_vector() == original.to_vector());
 }
 
 /*TEST_CASE("Doubly linked list starts empty and supports front/back operations") {
