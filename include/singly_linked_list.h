@@ -52,27 +52,28 @@ SLinkedList<T>::~SLinkedList() {
 template <typename T>
 SLinkedList<T>::SLinkedList(const SLinkedList& other) : head_(nullptr), size_(0) {
 //TODO: Implement the copy constructor for the SLinkedList class
-    SNode<T>* newNode = new SNode<T>(other.head_->value);
-    SNode<T>* tempNode1;
-    SNode<T>* tempNode2;
-    tempNode1 = other.head_;
-    tempNode2 = newNode;
-    if(!other.empty()) {
-        while(tempNode1->next != nullptr) {
-            tempNode2->next = tempNode1->next;
-            tempNode1 = tempNode1->next;
-            tempNode2 = tempNode2->next;
-        }
-        head_ = newNode;
+    SNode<T>* tempNode = other.head_;
+    while(tempNode != nullptr) {
+        push_back(tempNode->value);
+        tempNode = tempNode->next;
     }
-    
-
 }
 
 template <typename T>
 SLinkedList<T>& SLinkedList<T>::operator=(const SLinkedList& other) {
 //TODO: Implement the assignment operator for the SLinkedList class
-    head_ = other.head_;
+    if (this != &other) {
+        while(!empty()) {
+            pop_front();
+        }
+        SNode<T>* tempNode = other.head_;
+        while (tempNode != nullptr) {
+            push_back(tempNode->value);
+            tempNode = tempNode->next;
+        }
+    }
+
+    return *this;
 }
 
 template <typename T>
